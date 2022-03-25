@@ -21,5 +21,16 @@
             <div><a href="#">www.freecodecamp.org</a></div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-4">
+            <div><img src="https://cdn.pixabay.com/photo/2021/08/05/12/36/software-development-6523979__340.jpg" class="w-100"></div>
+        </div>
+        <div class="col-4">
+            <img src="https://cdn.pixabay.com/photo/2016/11/19/14/00/code-1839406__340.jpg" class="w-100">
+        </div>
+        <div class="col-4">
+            <img src="https://cdn.pixabay.com/photo/2019/06/17/19/48/source-4280758__340.jpg" class="w-100">
+        </div>
+    </div>
 </div>
 @endsection
