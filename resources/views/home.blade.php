@@ -8,7 +8,7 @@
         </div>
         <div class="col-9 p-8">
             <div class="pt-5">
-                <h1>freecodecamp</h1>
+                <h1>{{ $user->username }}</h1>
             </div>
             <div class="d-flex">
                 <div class="pe-5"><strong>153</strong> post</div>
