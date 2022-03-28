@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('url')->nullable();
             $table->timestamps();
 
+            //Un index por cada llave foranea que usemos.
             $table->index('user_id');
         });
     }
