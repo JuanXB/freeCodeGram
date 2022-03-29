@@ -46,7 +46,7 @@ class User extends Authenticatable
     //Relación uno a muchos con post.
     public function posts()
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class)->orderBy('created_at', 'DESC');
     }
 
     //Relación uno a uno con Profile.
