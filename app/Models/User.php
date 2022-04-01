@@ -63,6 +63,12 @@ class User extends Authenticatable
         return $this->hasMany(Post::class)->orderBy('created_at', 'DESC');
     }
 
+    //Relacion mucho a uno, usando una tabla pivot de id's de perfiles.
+    public function following()
+    {
+        return $this->belongsToMany(Profile::class);
+    }
+
     //Relación uno a uno con Profile.
     public function profile()
     {

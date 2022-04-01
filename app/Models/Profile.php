@@ -20,6 +20,12 @@ class Profile extends Model
         return '/storage/' . $imagePath;
     }
 
+    //Relacion muchos a uno usando una tabla pivot con id's a user.
+    public function followers()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
     // Relación uno a uno con tabla user.
     public function user()
     {
