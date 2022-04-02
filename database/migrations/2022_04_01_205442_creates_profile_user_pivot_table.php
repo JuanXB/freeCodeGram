@@ -15,9 +15,12 @@ return new class extends Migration
     {
         Schema::create('profile_user', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_profile');
-            $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('profile_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+
+            $table->foreign('profile_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('profiles');
         });
     }
 
