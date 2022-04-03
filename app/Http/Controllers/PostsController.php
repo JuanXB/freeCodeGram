@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use App\Models\Post;
+use App\Models\User;
 
 
 
@@ -58,8 +59,9 @@ class PostsController extends Controller
     }
 
     //Mostrar un post seleccionado.
-    public function show(\App\Models\Post $post)
+    public function show(Post $post, User $user)
     {
-        return view('posts.show', compact('post'));
+        $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
+        return view('posts.show', compact('post', 'follows'));
     }
 }

@@ -1,7 +1,9 @@
 <?php
 
+use App\Mail\NewUserWelcomeMail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Route as GlobalRoute;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 Auth::routes();
+
 
 Route::get('/', [App\Http\Controllers\PostsController::class, 'index']);
 Route::get('/p/create',  [App\Http\Controllers\PostsController::class, 'create']);

@@ -6,18 +6,48 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Intervention\Image\Facades\Image;
 use Auth;
+use Illuminate\Support\Facades\Cache;
 
 class ProfilesController extends Controller
 {
+    //Pagina principal del perfil, junto con todos sus datos.
     public function index(User $user)
     {
 
         $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
 
+        //Cantidad de post.
+        $postsCount = Cache::remember(
+            'count.post' . $user->id,
+            now()->addSeconds(30),
+            function () use ($user) {
+                return $user->posts->count();
+            }
+        );
 
-        return view('profiles/index', compact('user', 'follows'));
+        //Cantidad de followers.
+        $followersCount = Cache::remember(
+            'count.followers' . $user->id,
+            now()->addSeconds(30),
+            function () use ($user) {
+                return $user->profile->followers->count();
+            }
+        );
+
+
+        $followingCount = Cache::remember(
+            'count.post' . $user->id,
+            now()->addSeconds(30),
+            function () use ($user) {
+                return $user->following->count();
+            }
+        );
+
+
+        return view('profiles/index', compact('user', 'follows', 'postsCount', 'followersCount', 'followingCount'));
     }
 
+    //Redirección para editar los datos del perfil del usuario logueado.
     public function edit(User $user)
     {
         //Autorizacion para editar perfil.
@@ -26,6 +56,7 @@ class ProfilesController extends Controller
         return view('profiles/edit', compact('user'));
     }
 
+    //Actualizacion de los datos del perfil.
     public function update(User $user)
     {
         //Autorizacion para editar perfil.
