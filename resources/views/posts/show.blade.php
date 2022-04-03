@@ -19,7 +19,7 @@
                                     <div class="text-dark">{{$post->user->username}}</div>
                                 </span>
                             </a>
-                            <a href="#" class=" text-decoration-none">Follow</a>
+                            <follow-button user_id="{{$post->user->id}}" follows="{{$follows}}"></follow-button>
                         </div>
                     </div>
                 </div>
